@@ -82,6 +82,17 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/images/home-bg.mp4"
       />
+      {/* Leaderboard — above cards */}
+      <div className="flex justify-center mt-3">
+        <button
+          onClick={() => { playClickSound(); setShowLeaderboard(true); }}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 text-[#5A6B6A] text-xs font-semibold hover:bg-white/70 active:scale-95 transition-all"
+        >
+          <Trophy size={14} />
+          리더보드
+        </button>
+      </div>
+
       {/* Main content area */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 lg:px-8 xl:px-12">
       <div className="flex items-center justify-center w-full">
@@ -177,28 +188,8 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         </button>
       </div>
 
-      {/* Dots + leaderboard — between cards and speech */}
-      <div className="flex items-center justify-center gap-4 mt-3">
-        <div className="flex gap-2">
-          {Array.from({ length: gameList.length - VISIBLE_COUNT + 1 }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => { playClickSound(); setStartIdx(i); }}
-              className={`w-2 h-2 rounded-full transition-all ${i === startIdx ? 'bg-[#38D9C5] w-5' : 'bg-[#B0C4C0]'}`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={() => { playClickSound(); setShowLeaderboard(true); }}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/50 text-[#5A6B6A] text-xs font-semibold hover:bg-white/70 active:scale-95 transition-all"
-        >
-          <Trophy size={14} />
-          리더보드
-        </button>
-      </div>
-
       {/* Speech bubble */}
-      <div className="flex justify-center w-full mt-3 px-4 lg:px-8 xl:px-12 mb-4">
+      <div className="flex justify-center w-full mt-3 px-4 lg:px-8 xl:px-12">
         <div className="w-full bg-black/60 backdrop-blur-md text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
           <span className="leading-relaxed">
             {displayedText}
@@ -207,6 +198,17 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
             )}
           </span>
         </div>
+      </div>
+
+      {/* Dots indicator — bottom center */}
+      <div className="flex justify-center gap-2 py-4">
+        {Array.from({ length: gameList.length - VISIBLE_COUNT + 1 }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { playClickSound(); setStartIdx(i); }}
+            className={`w-2 h-2 rounded-full transition-all ${i === startIdx ? 'bg-[#38D9C5] w-5' : 'bg-[#B0C4C0]'}`}
+          />
+        ))}
       </div>
       </div>
 
