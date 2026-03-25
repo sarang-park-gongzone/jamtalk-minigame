@@ -154,7 +154,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               <button
                 key={id}
                 onClick={() => { playClickSound(); onSelectGame(id); }}
-                className="rounded-2xl lg:rounded-3xl overflow-hidden
+                className="relative rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
                   flex flex-col justify-start p-6 lg:p-8 text-left h-[364px] lg:h-[424px]"
@@ -170,6 +170,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 <p className="text-sm lg:text-base text-white/80 mt-3 leading-relaxed whitespace-pre-line">
                   {desc}
                 </p>
+                {id === 'english' && (
+                  <img
+                    src="/images/abc-dog.png"
+                    alt="ABC 놀이"
+                    className="absolute bottom-3 right-3 w-28 lg:w-36 xl:w-40 object-contain pointer-events-none"
+                  />
+                )}
               </button>
             );
           })}
