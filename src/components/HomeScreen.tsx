@@ -181,7 +181,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   <img
                     src="/images/speaking-emily.png"
                     alt="따라 말해봐"
-                    className="absolute bottom-0 -right-2 h-[91%] object-contain pointer-events-none drop-shadow-lg"
+                    className="absolute bottom-0 -right-2 h-[100%] object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
                 {id === 'capital' && (
