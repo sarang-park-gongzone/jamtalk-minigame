@@ -38,51 +38,34 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const fullText = speechText || DEFAULT_SPEECH;
-  // Split into 2-line chunks by sentence endings or newlines
-  const sentences = fullText.split(/[.!?\n]+/).map(s => s.trim()).filter(Boolean);
-  const lines: string[] = [];
-  for (let i = 0; i < sentences.length; i += 2) {
-    lines.push(sentences.slice(i, i + 2).join('\n'));
-  }
-  const [lineIdx, setLineIdx] = useState(0);
-  const [displayedLine, setDisplayedLine] = useState('');
-  const [fading, setFading] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const charIdxRef = useRef(0);
 
-  // Typewriter per line, then auto-advance to next line
+  // Reset when text changes
   useEffect(() => {
-    setLineIdx(0);
-    setDisplayedLine('');
-    setFading(false);
+    setDisplayedText('');
+    charIdxRef.current = 0;
   }, [fullText]);
 
+  // Typewriter synced to TTS: type while speaking, speed matches TTS (~120ms/char)
   useEffect(() => {
-    if (lines.length === 0) return;
-    const currentLine = lines[lineIdx % lines.length];
-    let charIdx = 0;
-    setDisplayedLine('');
-    setFading(false);
+    if (charIdxRef.current >= fullText.length) return;
 
-    // Type out current line
-    const typeInterval = setInterval(() => {
-      charIdx++;
-      if (charIdx <= currentLine.length) {
-        setDisplayedLine(currentLine.slice(0, charIdx));
+    // Calculate speed: distribute remaining chars over estimated TTS duration
+    // Korean TTS ~ 6-8 chars/sec, so ~130ms per char
+    const msPerChar = 130;
+
+    const interval = setInterval(() => {
+      charIdxRef.current++;
+      if (charIdxRef.current <= fullText.length) {
+        setDisplayedText(fullText.slice(0, charIdxRef.current));
       } else {
-        clearInterval(typeInterval);
-        // Wait, then fade out and advance
-        const waitTimer = setTimeout(() => {
-          setFading(true);
-          const fadeTimer = setTimeout(() => {
-            setLineIdx(prev => (prev + 1) % lines.length);
-          }, 300);
-          return () => clearTimeout(fadeTimer);
-        }, 2000);
-        return () => clearTimeout(waitTimer);
+        clearInterval(interval);
       }
-    }, 50);
+    }, msPerChar);
 
-    return () => clearInterval(typeInterval);
-  }, [lineIdx, lines.length]);
+    return () => clearInterval(interval);
+  }, [fullText]);
   const canPrev = startIdx > 0;
   const canNext = startIdx + VISIBLE_COUNT < gameList.length;
   const visibleGames = gameList.slice(startIdx, startIdx + VISIBLE_COUNT);
@@ -128,11 +111,11 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 small
               />
             </div>
-            {/* Speech bubble - auto-cycling lines */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[72px] shrink-0 overflow-hidden flex items-center justify-center whitespace-pre-line">
-              <span className={`transition-opacity duration-300 ${fading ? 'opacity-0' : 'opacity-100'}`}>
-                {displayedLine}
-                {displayedLine.length < (lines[lineIdx % lines.length] || '').length && (
+            {/* Speech bubble - synced with TTS */}
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[72px] shrink-0 overflow-hidden flex items-center justify-center">
+              <span className="leading-relaxed">
+                {displayedText}
+                {displayedText.length < fullText.length && (
                   <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
                 )}
               </span>
