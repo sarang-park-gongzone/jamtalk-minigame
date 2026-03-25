@@ -1,0 +1,98 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background: #F4EDE7;
+  min-height: 100dvh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+#klleon-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  clip-path: inset(0 round 1rem);
+}
+
+#klleon-avatar video,
+#klleon-avatar canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 1rem;
+}
+
+.avatar-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: 300px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.avatar-wrapper-small {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.sdk-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #636E72;
+}
+
+.sdk-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #636E72;
+  transition: background 0.3s;
+}
+
+.sdk-status-dot.ready { background: #00B894; }
+.sdk-status-dot.loading { background: #FDCB6E; }
+.sdk-status-dot.error { background: #D63031; }
+
+/* Game card hover/click animations */
+@keyframes cardPress {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1.03); }
+}
+
+.game-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.game-card:active {
+  animation: cardPress 0.3s ease-out;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(108, 92, 231, 0.3);
+  border-radius: 2px;
+}
