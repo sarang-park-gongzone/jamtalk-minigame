@@ -157,6 +157,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 <p className="text-sm lg:text-base text-white/80 mt-3 leading-relaxed whitespace-pre-line">
                   {desc}
                 </p>
+                {id === 'speaking' && (
+                  <img
+                    src="/images/speaking-emily.png"
+                    alt="따라 말해봐"
+                    className="absolute bottom-0 -right-2 h-[63%] object-contain pointer-events-none drop-shadow-lg"
+                  />
+                )}
                 {id === 'capital' && (
                   <img
                     src="/images/travel-jigu.png"
