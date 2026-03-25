@@ -46,7 +46,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeSc
         loop
         muted
         playsInline
-        ref={(el) => { if (el) el.playbackRate = 0.25; }}
+        ref={(el) => { if (el) el.playbackRate = 0.5; }}
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/images/home-bg.mp4"
       />
