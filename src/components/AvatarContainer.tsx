@@ -40,9 +40,9 @@ export default function AvatarContainer({ className, mockMode, sdkStatus = 'load
       el.style.width = `${rect.width}px`;
       el.style.height = `${rect.height}px`;
       el.style.zIndex = '5';
-      el.style.borderRadius = '1rem';
+      el.style.borderRadius = '1.5rem';
       el.style.overflow = 'hidden';
-      el.style.clipPath = 'inset(0 round 1rem)';
+      el.style.clipPath = 'inset(0 round 1.5rem)';
     }
 
     updatePosition();
