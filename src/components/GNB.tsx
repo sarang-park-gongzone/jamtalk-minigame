@@ -35,7 +35,8 @@ export default function GNB({ onGoHome }: GNBProps) {
   const [selectedIdx, setSelectedIdx] = useState(todayIdx);
 
   return (
-    <nav className="flex items-center justify-between px-4 lg:px-8 py-2.5 bg-white/40 backdrop-blur-sm">
+    <nav className="flex items-center justify-center py-2.5 bg-white/40 backdrop-blur-sm">
+      <div className="flex items-center justify-between w-full px-4 lg:px-8" style={{ maxWidth: '1400px' }}>
       {/* Home */}
       <button
         onClick={onGoHome}
@@ -77,6 +78,7 @@ export default function GNB({ onGoHome }: GNBProps) {
         <MessageCircle size={22} />
         <span className="text-[10px] font-medium">학부모 상담</span>
       </button>
+      </div>
     </nav>
   );
 }
