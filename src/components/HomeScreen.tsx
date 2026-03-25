@@ -136,20 +136,21 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               />
             </div>
             {/* Mic icon */}
-            <button
-              onClick={voice.toggleRecording}
-              className={`mt-3 flex items-center justify-center w-12 h-12 rounded-full shadow-md z-20 transition-all active:scale-90 ${
-                voice.isRecording
-                  ? 'bg-[#38D9C5] text-white animate-micPulse'
-                  : 'bg-[#38D9C5] text-white hover:bg-[#2CC4B0]'
-              }`}
-            >
-              <Mic size={22} />
-            </button>
-            {voice.isRecording && (
-              <span className="text-xs text-[#38D9C5] font-semibold mt-1 animate-pulse">듣는 중...</span>
-            )}
-          </div>
+            <div className="relative mt-3">
+              <button
+                onClick={voice.toggleRecording}
+                className={`flex items-center justify-center w-12 h-12 rounded-full shadow-md z-20 transition-all active:scale-90 ${
+                  voice.isRecording
+                    ? 'bg-[#38D9C5] text-white animate-micPulse'
+                    : 'bg-[#38D9C5] text-white hover:bg-[#2CC4B0]'
+                }`}
+              >
+                <Mic size={22} />
+              </button>
+              {voice.isRecording && (
+                <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-xs text-[#38D9C5] font-semibold animate-pulse whitespace-nowrap">듣는 중...</span>
+              )}
+            </div>
 
           {/* Game cards */}
           {visibleGames.map((id, idx) => {
