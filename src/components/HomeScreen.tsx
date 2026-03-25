@@ -87,8 +87,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         <div className="flex-1 flex items-stretch gap-8 lg:gap-12 mx-2 lg:mx-4">
           {/* Avatar section — same flex-1 as game cards */}
           <div
-            className="flex-1 flex flex-col items-center opacity-0"
-            style={{ animation: 'fadeInUp 0.5s ease-out 0.2s forwards' }}
+            className="flex-1 flex flex-col items-center animate-fadeIn"
           >
             {/* Avatar card */}
             <div className="w-full flex-1 relative min-h-[220px] lg:min-h-[260px]">
@@ -130,7 +129,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   flex flex-col justify-start p-6 lg:p-8 text-left min-h-[280px] lg:min-h-[340px]"
                 style={{
                   background: color,
-                  ...(shouldAnimate ? { opacity: 0, animation: `fadeInUp 0.5s ease-out ${delay}s forwards` } : {}),
+                  ...(shouldAnimate ? { opacity: 0, animation: `fadeIn 0.4s ease-out ${delay}s forwards` } : {}),
                 }}
               >
                 <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-white leading-tight">
