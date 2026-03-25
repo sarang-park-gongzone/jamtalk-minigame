@@ -99,7 +99,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               />
             </div>
             {/* Speech bubble - live typewriter text */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 h-[60px] overflow-y-auto whitespace-pre-line">
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 h-[60px] lg:h-[60px] shrink-0 overflow-y-auto whitespace-pre-line">
               {displayedText}
               {displayedText.length < fullText.length && (
                 <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
@@ -126,7 +126,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 className="rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
-                  flex flex-col justify-start p-6 lg:p-8 text-left h-[280px] lg:h-[340px]"
+                  flex flex-col justify-start p-6 lg:p-8 text-left h-[352px] lg:h-[412px]"
                 style={{
                   background: color,
                   flex: '1.3',
