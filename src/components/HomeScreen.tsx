@@ -65,14 +65,14 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeSc
 
         {/* Avatar + Cards row */}
         <div className="flex-1 flex items-stretch gap-4 lg:gap-6 mx-2 lg:mx-4 max-w-6xl">
-          {/* Avatar section */}
+          {/* Avatar section — same flex-1 as game cards */}
           <div
-            className="shrink-0 w-56 lg:w-64 xl:w-72 flex flex-col items-center opacity-0"
+            className="flex-1 flex flex-col items-center opacity-0 min-h-[280px] lg:min-h-[340px]"
             style={{ animation: 'fadeInUp 0.5s ease-out 0.2s forwards' }}
           >
-            <div className="w-full relative" style={{ aspectRatio: '3 / 4', maxHeight: '380px' }}>
+            <div className="w-full h-full relative">
               <AvatarContainer
-                className="w-full h-full rounded-2xl bg-[#EDE8E0]"
+                className="w-full h-full rounded-2xl lg:rounded-3xl bg-[#EDE8E0]"
                 mockMode={mockMode}
                 sdkStatus={sdkStatus}
                 small
@@ -81,13 +81,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeSc
               <div className="absolute bottom-4 left-3 right-3 z-10 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed">
                 안녕~! 만나서 반가워<br />오늘도 재밌는 놀이를 해볼까?
               </div>
-            </div>
-            {/* Mic icon */}
-            <button className="mt-3 flex flex-col items-center gap-1 text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors">
-              <div className="w-10 h-10 rounded-full bg-white/60 flex items-center justify-center shadow-sm">
-                <Mic size={20} />
+              {/* Mic icon */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-10">
+                <button className="flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors">
+                  <Mic size={20} />
+                </button>
               </div>
-            </button>
+            </div>
           </div>
 
           {/* Game cards */}
