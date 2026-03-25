@@ -177,21 +177,8 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         </button>
       </div>
 
-      {/* Speech bubble - right below cards */}
-      <div className="flex justify-center w-full mt-3 px-4 lg:px-8 xl:px-12">
-        <div className="w-full bg-black/60 backdrop-blur-md text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
-          <span className="leading-relaxed">
-            {displayedText}
-            {displayedText.length < fullText.length && (
-              <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
-            )}
-          </span>
-        </div>
-      </div>
-      </div>
-
-      {/* Bottom: dots + leaderboard */}
-      <div className="flex items-center justify-center gap-4 pb-6">
+      {/* Dots + leaderboard — between cards and speech */}
+      <div className="flex items-center justify-center gap-4 mt-3">
         <div className="flex gap-2">
           {Array.from({ length: gameList.length - VISIBLE_COUNT + 1 }).map((_, i) => (
             <button
@@ -208,6 +195,19 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
           <Trophy size={14} />
           리더보드
         </button>
+      </div>
+
+      {/* Speech bubble */}
+      <div className="flex justify-center w-full mt-3 px-4 lg:px-8 xl:px-12 mb-4">
+        <div className="w-full bg-black/60 backdrop-blur-md text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
+          <span className="leading-relaxed">
+            {displayedText}
+            {displayedText.length < fullText.length && (
+              <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
+            )}
+          </span>
+        </div>
+      </div>
       </div>
 
       <LeaderboardModal
