@@ -99,7 +99,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               />
             </div>
             {/* Speech bubble - live typewriter text */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 min-h-[48px] whitespace-pre-line">
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 h-[60px] overflow-y-auto whitespace-pre-line">
               {displayedText}
               {displayedText.length < fullText.length && (
                 <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
