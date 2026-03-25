@@ -123,12 +123,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               <button
                 key={id}
                 onClick={() => { playClickSound(); onSelectGame(id); }}
-                className="flex-1 rounded-2xl lg:rounded-3xl overflow-hidden
+                className="rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
                   flex flex-col justify-start p-6 lg:p-8 text-left min-h-[280px] lg:min-h-[340px]"
                 style={{
                   background: color,
+                  flex: '1.3',
                   ...(shouldAnimate ? { opacity: 0, animation: `fadeIn 0.4s ease-out ${delay}s forwards` } : {}),
                 }}
               >
