@@ -149,14 +149,14 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   <img
                     src="/images/travel-jigu.png"
                     alt="나라 여행 퀴즈"
-                    className="absolute bottom-0 right-0 w-64 lg:w-80 xl:w-96 object-contain pointer-events-none"
+                    className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 lg:w-48 xl:w-56 object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
                 {id === 'english' && (
                   <img
                     src="/images/abc-emily.png"
                     alt="ABC 놀이"
-                    className="absolute bottom-0 right-0 w-64 lg:w-80 xl:w-96 object-contain pointer-events-none"
+                    className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 lg:w-48 xl:w-56 object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
               </button>
