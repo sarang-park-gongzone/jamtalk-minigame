@@ -9,7 +9,7 @@ import CapitalGame from './components/CapitalGame';
 import EnglishChainGame from './components/EnglishChainGame';
 import PatternSpeakingGame from './components/PatternSpeakingGame';
 
-const HOME_GREETING = '안녕! 재미있는 대화가 톡톡 터지는 곳, 잼톡에 온 걸 환영해! 오늘은 나랑 어떤 놀이를 해볼까? 아래에서 원하는 게임을 콕! 골라줘.';
+const HOME_GREETING = '안녕! 재미있는 대화가 톡톡 터지는 곳, 잼톡에 온 걸 환영해! 오늘은 나랑 어떤 놀이를 해볼까? 원하는 게임을 콕! 골라줘.';
 
 export default function App() {
   const [appPhase, setAppPhase] = useState<AppPhase>('home');
