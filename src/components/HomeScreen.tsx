@@ -199,7 +199,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   <img
                     src="/images/wordchain-hana.png"
                     alt="우리말 대결"
-                    className="absolute top-4 -right-2 h-[75%] object-contain pointer-events-none drop-shadow-lg"
+                    className="absolute bottom-0 right-0 h-[75%] object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
                 {id === 'english' && (
