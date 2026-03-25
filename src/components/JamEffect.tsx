@@ -12,8 +12,7 @@ export default function JamEffect() {
   const [floats, setFloats] = useState<FloatingPoint[]>([]);
   const [comboShow, setComboShow] = useState(false);
   const combo = useGameStore(s => s.currentCombo);
-  const totalJam = useGameStore(s => s.totalJam);
-  const prevJamRef = { current: 0 };
+  useGameStore(s => s.totalJam);
 
   // Show combo effect on multiples of 3
   useEffect(() => {

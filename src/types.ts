@@ -111,6 +111,9 @@ declare global {
       onChatEvent?: (event: { type: string; data?: { text?: string } }) => void;
     };
     __klleonSDKReady?: Promise<void>;
-    webkitSpeechRecognition?: typeof SpeechRecognition;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    SpeechRecognition?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webkitSpeechRecognition?: any;
   }
 }

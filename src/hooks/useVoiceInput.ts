@@ -8,7 +8,8 @@ interface UseVoiceInputOptions {
 
 export function useVoiceInput({ onResult, onError, lang = 'ko-KR' }: UseVoiceInputOptions) {
   const [isRecording, setIsRecording] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
 
   const stopRecording = useCallback(() => {
     if (recognitionRef.current) {
@@ -36,7 +37,8 @@ export function useVoiceInput({ onResult, onError, lang = 'ko-KR' }: UseVoiceInp
     recognition.maxAlternatives = 1;
     recognition.continuous = false;
 
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    recognition.onresult = (event: any) => {
       const text = event.results[0][0].transcript.trim();
       if (text) onResult(text);
       setIsRecording(false);

@@ -36,7 +36,8 @@ export default function PatternSpeakingGame({ echo, echoAndWait, mockMode, sdkSt
   const [showExitModal, setShowExitModal] = useState(false);
   const [userAudioUrl, setUserAudioUrl] = useState<string | null>(null);
 
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const recognitionRef = useRef<any>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
@@ -119,7 +120,8 @@ export default function PatternSpeakingGame({ echo, echoAndWait, mockMode, sdkSt
       recognition.interimResults = false;
       recognition.continuous = false;
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      recognition.onresult = (event: any) => {
         const text = event.results[0][0].transcript;
         setUserText(text);
         if (checkMatch(text)) {

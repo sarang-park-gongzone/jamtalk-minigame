@@ -31,7 +31,7 @@ export default function AvatarContainer({ className, mockMode, sdkStatus = 'load
     if (!el || !containerRef.current) return;
 
     function updatePosition() {
-      if (!containerRef.current) return;
+      if (!containerRef.current || !el) return;
       const rect = containerRef.current.getBoundingClientRect();
       el.style.display = 'block';
       el.style.position = 'fixed';
