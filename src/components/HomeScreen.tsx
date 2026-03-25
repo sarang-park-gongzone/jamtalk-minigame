@@ -38,8 +38,12 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const fullText = speechText || DEFAULT_SPEECH;
-  // Split into lines by sentence endings or newlines
-  const lines = fullText.split(/[.!?\n]+/).map(s => s.trim()).filter(Boolean);
+  // Split into 2-line chunks by sentence endings or newlines
+  const sentences = fullText.split(/[.!?\n]+/).map(s => s.trim()).filter(Boolean);
+  const lines: string[] = [];
+  for (let i = 0; i < sentences.length; i += 2) {
+    lines.push(sentences.slice(i, i + 2).join('\n'));
+  }
   const [lineIdx, setLineIdx] = useState(0);
   const [displayedLine, setDisplayedLine] = useState('');
   const [fading, setFading] = useState(false);
@@ -124,7 +128,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               />
             </div>
             {/* Speech bubble - auto-cycling lines */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[60px] shrink-0 overflow-hidden flex items-center justify-center">
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[72px] shrink-0 overflow-hidden flex items-center justify-center whitespace-pre-line">
               <span className={`transition-opacity duration-300 ${fading ? 'opacity-0' : 'opacity-100'}`}>
                 {displayedLine}
                 {displayedLine.length < (lines[lineIdx % lines.length] || '').length && (
@@ -153,7 +157,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 className="rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
-                  flex flex-col justify-start p-6 lg:p-8 text-left h-[352px] lg:h-[412px]"
+                  flex flex-col justify-start p-6 lg:p-8 text-left h-[364px] lg:h-[424px]"
                 style={{
                   background: color,
                   flex: '1.3',
