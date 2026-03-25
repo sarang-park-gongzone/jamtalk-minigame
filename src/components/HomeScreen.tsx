@@ -173,9 +173,9 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 </p>
                 {id === 'english' && (
                   <img
-                    src="/images/abc-dog.png"
+                    src="/images/abc-emily.png"
                     alt="ABC 놀이"
-                    className="absolute bottom-3 right-3 w-28 lg:w-36 xl:w-40 object-contain pointer-events-none"
+                    className="absolute bottom-0 right-0 w-32 lg:w-40 xl:w-48 object-contain pointer-events-none"
                   />
                 )}
               </button>
