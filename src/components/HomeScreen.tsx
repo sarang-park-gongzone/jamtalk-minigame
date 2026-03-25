@@ -111,15 +111,6 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 small
               />
             </div>
-            {/* Speech bubble - synced with TTS */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[72px] shrink-0 overflow-hidden flex items-center justify-center">
-              <span className="leading-relaxed">
-                {displayedText}
-                {displayedText.length < fullText.length && (
-                  <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
-                )}
-              </span>
-            </div>
             {/* Mic icon */}
             <button className="mt-3 flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors z-20">
               <Mic size={20} />
@@ -141,7 +132,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 className="relative rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
-                  flex flex-col justify-start p-6 lg:p-8 text-left h-[364px] lg:h-[424px]"
+                  flex flex-col justify-start p-6 lg:p-8 text-left h-[280px] lg:h-[340px]"
                 style={{
                   background: color,
                   flex: '1.3',
@@ -183,6 +174,18 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         >
           <ChevronRight size={40} strokeWidth={1.5} />
         </button>
+      </div>
+
+      {/* Speech bubble - full width at bottom */}
+      <div className="flex justify-center px-4 lg:px-8 xl:px-12 mb-4">
+        <div className="w-full bg-[#9E9E9E]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
+          <span className="leading-relaxed">
+            {displayedText}
+            {displayedText.length < fullText.length && (
+              <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
+            )}
+          </span>
+        </div>
       </div>
 
       {/* Bottom: dots + leaderboard */}
