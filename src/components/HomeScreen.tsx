@@ -195,6 +195,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                     className="absolute bottom-0 -right-2 h-[63%] object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
+                {id === 'wordchain' && (
+                  <img
+                    src="/images/wordchain-hana.png"
+                    alt="우리말 대결"
+                    className="absolute bottom-0 -right-2 h-[63%] object-contain pointer-events-none drop-shadow-lg"
+                  />
+                )}
                 {id === 'english' && (
                   <img
                     src="/images/abc-emily.png"
