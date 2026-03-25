@@ -154,6 +154,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 <p className="text-sm lg:text-base text-white/80 mt-3 leading-relaxed whitespace-pre-line">
                   {desc}
                 </p>
+                {id === 'capital' && (
+                  <img
+                    src="/images/travel-jigu.png"
+                    alt="나라 여행 퀴즈"
+                    className="absolute bottom-0 right-0 w-64 lg:w-80 xl:w-96 object-contain pointer-events-none"
+                  />
+                )}
                 {id === 'english' && (
                   <img
                     src="/images/abc-emily.png"
