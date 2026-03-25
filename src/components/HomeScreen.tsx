@@ -179,7 +179,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
 
       {/* Speech bubble - right below cards */}
       <div className="flex justify-center w-full mt-3 px-4 lg:px-8 xl:px-12">
-        <div className="w-full bg-[#9E9E9E]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
+        <div className="w-full bg-black/60 backdrop-blur-md text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
           <span className="leading-relaxed">
             {displayedText}
             {displayedText.length < fullText.length && (
