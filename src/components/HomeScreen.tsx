@@ -84,7 +84,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         </button>
 
         {/* Avatar + Cards row */}
-        <div className="flex-1 flex items-stretch gap-8 lg:gap-12 mx-2 lg:mx-4">
+        <div className="flex-1 flex items-stretch gap-5 lg:gap-8 mx-2 lg:mx-4 max-w-5xl">
           {/* Avatar section — same flex-1 as game cards */}
           <div
             className="flex-1 flex flex-col items-center animate-fadeIn"
