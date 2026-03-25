@@ -5,12 +5,14 @@ import { playClickSound } from '../utils/soundUtils';
 import { ChevronLeft, ChevronRight, Mic, Trophy } from 'lucide-react';
 import LeaderboardModal from './LeaderboardModal';
 import AvatarContainer from './AvatarContainer';
+import { useVoiceInput } from '../hooks/useVoiceInput';
 
 interface HomeScreenProps {
   onSelectGame: (id: GameId) => void;
   mockMode?: boolean;
   sdkStatus?: 'loading' | 'ready' | 'error';
   speechText?: string;
+  echo?: (msg: string) => void;
 }
 
 const gameList: GameId[] = ['speaking', 'english', 'capital', 'wordchain'];
@@ -33,10 +35,18 @@ const VISIBLE_COUNT = 3;
 
 const DEFAULT_SPEECH = '안녕~! 만나서 반가워\n오늘도 재밌는 놀이를 해볼까?';
 
-export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechText }: HomeScreenProps) {
+export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechText, echo }: HomeScreenProps) {
   const [startIdx, setStartIdx] = useState(0);
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+  // Mic: voice input → echo to avatar
+  const handleVoiceResult = (text: string) => {
+    if (echo && text.trim()) {
+      echo(text.trim());
+    }
+  };
+  const voice = useVoiceInput({ onResult: handleVoiceResult, lang: 'ko-KR' });
   const fullText = speechText || DEFAULT_SPEECH;
   const [displayedText, setDisplayedText] = useState('');
   const charIdxRef = useRef(0);
@@ -124,9 +134,19 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
               />
             </div>
             {/* Mic icon */}
-            <button className="mt-3 flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors z-20">
-              <Mic size={20} />
+            <button
+              onClick={voice.toggleRecording}
+              className={`mt-3 flex items-center justify-center w-12 h-12 rounded-full shadow-md z-20 transition-all active:scale-90 ${
+                voice.isRecording
+                  ? 'bg-[#38D9C5] text-white animate-micPulse'
+                  : 'bg-[#38D9C5] text-white hover:bg-[#2CC4B0]'
+              }`}
+            >
+              <Mic size={22} />
             </button>
+            {voice.isRecording && (
+              <span className="text-xs text-[#38D9C5] font-semibold mt-1 animate-pulse">듣는 중...</span>
+            )}
           </div>
 
           {/* Game cards */}

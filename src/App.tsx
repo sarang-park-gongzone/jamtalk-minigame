@@ -54,6 +54,7 @@ export default function App() {
               mockMode={mockMode}
               sdkStatus={sdkStatus}
               speechText={currentSpeechText}
+              echo={echo}
             />
           )}
           {appPhase === 'game' && selectedGame === 'wordchain' && (
