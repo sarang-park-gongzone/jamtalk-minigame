@@ -149,14 +149,14 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   <img
                     src="/images/travel-jigu.png"
                     alt="나라 여행 퀴즈"
-                    className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 lg:w-48 xl:w-56 object-contain pointer-events-none drop-shadow-lg"
+                    className="absolute bottom-2 right-2 h-[55%] object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
                 {id === 'english' && (
                   <img
                     src="/images/abc-emily.png"
                     alt="ABC 놀이"
-                    className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 lg:w-48 xl:w-56 object-contain pointer-events-none drop-shadow-lg"
+                    className="absolute bottom-2 right-2 h-[55%] object-contain pointer-events-none drop-shadow-lg"
                   />
                 )}
               </button>
@@ -177,7 +177,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
       </div>
 
       {/* Speech bubble - full width at bottom */}
-      <div className="flex justify-center px-4 lg:px-8 xl:px-12 mb-4">
+      <div className="flex justify-center px-4 lg:px-8 xl:px-12 -mt-4 mb-2">
         <div className="w-full bg-[#9E9E9E]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-6 py-4 rounded-xl overflow-hidden flex items-center justify-center" style={{ maxWidth: '1400px' }}>
           <span className="leading-relaxed">
             {displayedText}
