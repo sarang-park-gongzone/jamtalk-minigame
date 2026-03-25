@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { GameId } from '../types';
 import { GAME_CONFIGS } from '../types';
 import { playClickSound } from '../utils/soundUtils';
@@ -31,10 +31,29 @@ const cardDescriptions: Record<GameId, string> = {
 
 const VISIBLE_COUNT = 3;
 
+const DEFAULT_SPEECH = '안녕~! 만나서 반가워\n오늘도 재밌는 놀이를 해볼까?';
+
 export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechText }: HomeScreenProps) {
   const [startIdx, setStartIdx] = useState(0);
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const fullText = speechText || DEFAULT_SPEECH;
+
+  // Typewriter effect: reveal one character at a time
+  useEffect(() => {
+    setDisplayedText('');
+    let idx = 0;
+    const interval = setInterval(() => {
+      idx++;
+      if (idx <= fullText.length) {
+        setDisplayedText(fullText.slice(0, idx));
+      } else {
+        clearInterval(interval);
+      }
+    }, 50);
+    return () => clearInterval(interval);
+  }, [fullText]);
   const canPrev = startIdx > 0;
   const canNext = startIdx + VISIBLE_COUNT < gameList.length;
   const visibleGames = gameList.slice(startIdx, startIdx + VISIBLE_COUNT);
@@ -80,9 +99,12 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 small
               />
             </div>
-            {/* Speech bubble - shows live avatar speech text */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 min-h-[48px]">
-              {speechText || '안녕~! 만나서 반가워\n오늘도 재밌는 놀이를 해볼까?'}
+            {/* Speech bubble - live typewriter text */}
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 min-h-[48px] whitespace-pre-line">
+              {displayedText}
+              {displayedText.length < fullText.length && (
+                <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
+              )}
             </div>
             {/* Mic icon */}
             <button className="mt-3 flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors z-20">
