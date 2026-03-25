@@ -35,7 +35,7 @@ export default function GNB({ onGoHome }: GNBProps) {
   const [selectedIdx, setSelectedIdx] = useState(todayIdx);
 
   return (
-    <nav className="flex items-center justify-center py-2.5 bg-white/40 backdrop-blur-sm">
+    <nav className="flex items-center justify-center py-2.5 bg-[#FFF0F5]/70 backdrop-blur-sm">
       <div className="flex items-center justify-between w-full px-4 lg:px-8" style={{ maxWidth: '1400px' }}>
       {/* Home */}
       <button
