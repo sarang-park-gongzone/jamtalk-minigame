@@ -175,7 +175,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                   <img
                     src="/images/abc-emily.png"
                     alt="ABC 놀이"
-                    className="absolute bottom-0 right-0 w-32 lg:w-40 xl:w-48 object-contain pointer-events-none"
+                    className="absolute bottom-0 right-0 w-96 lg:w-[30rem] xl:w-[36rem] object-contain pointer-events-none"
                   />
                 )}
               </button>
