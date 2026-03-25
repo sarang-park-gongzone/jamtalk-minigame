@@ -151,6 +151,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-xs text-[#38D9C5] font-semibold animate-pulse whitespace-nowrap">듣는 중...</span>
               )}
             </div>
+          </div>
 
           {/* Game cards */}
           {visibleGames.map((id, idx) => {
