@@ -92,7 +92,7 @@ export const GAME_CONFIGS: Record<GameId, GameConfig> = {
     themeColor: '#E17055',
     themeBg: '#FFF0ED',
     themeGradient: 'from-[#E17055] to-[#FAB1A0]',
-    avatarId: 'a588091f-0090-11ef-8ee1-0abbf354c5cc',
+    avatarId: 'a55bf757-0090-11ef-8ee1-0abbf354c5cc',
   },
 };
 
