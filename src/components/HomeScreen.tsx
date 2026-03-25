@@ -87,10 +87,10 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
         <div className="flex-1 flex items-stretch gap-5 lg:gap-8 mx-2 lg:mx-4" style={{ maxWidth: '1400px' }}>
           {/* Avatar section — same flex-1 as game cards */}
           <div
-            className="flex-1 flex flex-col items-center animate-fadeIn"
+            className="flex-1 flex flex-col items-center animate-fadeIn shrink-0"
           >
             {/* Avatar card */}
-            <div className="w-full flex-1 relative min-h-[220px] lg:min-h-[260px]">
+            <div className="w-full relative h-[280px] lg:h-[340px]">
               <AvatarContainer
                 className="w-full h-full rounded-2xl lg:rounded-3xl bg-[#EDE8E0]"
                 mockMode={mockMode}
@@ -126,7 +126,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 className="rounded-2xl lg:rounded-3xl overflow-hidden
                   hover:shadow-2xl hover:-translate-y-2
                   active:scale-[0.97] transition-all duration-200
-                  flex flex-col justify-start p-6 lg:p-8 text-left min-h-[280px] lg:min-h-[340px]"
+                  flex flex-col justify-start p-6 lg:p-8 text-left h-[280px] lg:h-[340px]"
                 style={{
                   background: color,
                   flex: '1.3',
