@@ -20,7 +20,7 @@ export default function App() {
     ? GAME_CONFIGS[selectedGame].avatarId
     : HOME_AVATAR_ID;
 
-  const { isReady, mockMode, sdkStatus, echo, echoAndWait } = useKlleonSdk(currentAvatarId);
+  const { isReady, mockMode, sdkStatus, echo, echoAndWait, currentSpeechText } = useKlleonSdk(currentAvatarId);
 
   useEffect(() => {
     if (appPhase !== 'home') {
@@ -53,6 +53,7 @@ export default function App() {
               onSelectGame={handleSelectGame}
               mockMode={mockMode}
               sdkStatus={sdkStatus}
+              speechText={currentSpeechText}
             />
           )}
           {appPhase === 'game' && selectedGame === 'wordchain' && (

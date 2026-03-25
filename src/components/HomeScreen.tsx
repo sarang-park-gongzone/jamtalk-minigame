@@ -10,6 +10,7 @@ interface HomeScreenProps {
   onSelectGame: (id: GameId) => void;
   mockMode?: boolean;
   sdkStatus?: 'loading' | 'ready' | 'error';
+  speechText?: string;
 }
 
 const gameList: GameId[] = ['speaking', 'english', 'capital', 'wordchain'];
@@ -30,7 +31,7 @@ const cardDescriptions: Record<GameId, string> = {
 
 const VISIBLE_COUNT = 3;
 
-export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeScreenProps) {
+export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechText }: HomeScreenProps) {
   const [startIdx, setStartIdx] = useState(0);
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
@@ -64,7 +65,7 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeSc
         </button>
 
         {/* Avatar + Cards row */}
-        <div className="flex-1 flex items-stretch gap-8 lg:gap-12 mx-2 lg:mx-4 max-w-7xl">
+        <div className="flex-1 flex items-stretch gap-16 lg:gap-24 mx-2 lg:mx-4">
           {/* Avatar section — same flex-1 as game cards */}
           <div
             className="flex-1 flex flex-col items-center opacity-0"
@@ -79,9 +80,9 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus }: HomeSc
                 small
               />
             </div>
-            {/* Speech bubble - below avatar, above everything */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3">
-              안녕~! 만나서 반가워<br />오늘도 재밌는 놀이를 해볼까?
+            {/* Speech bubble - shows live avatar speech text */}
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 min-h-[48px]">
+              {speechText || '안녕~! 만나서 반가워\n오늘도 재밌는 놀이를 해볼까?'}
             </div>
             {/* Mic icon */}
             <button className="mt-3 flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors z-20">

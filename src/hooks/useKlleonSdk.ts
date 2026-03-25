@@ -12,6 +12,7 @@ export function useKlleonSdk(avatarId: string) {
   const [isReady, setIsReady] = useState(false);
   const [sdkStatus, setSdkStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [currentSpeechText, setCurrentSpeechText] = useState('');
   const mockMode = isMockMode();
   const avatarIdRef = useRef(avatarId);
   const isReadyRef = useRef(false);
@@ -149,6 +150,7 @@ export function useKlleonSdk(avatarId: string) {
     if (typeof KC.echo === 'function') {
       try { KC.echo(message); } catch {}
     }
+    setCurrentSpeechText(message);
   }, [mockMode]);
 
   const echoAndWait = useCallback(async (message: string, fallbackMs = 15000): Promise<void> => {
@@ -172,6 +174,8 @@ export function useKlleonSdk(avatarId: string) {
         clearTimeout(timer);
         resolve();
       };
+
+      setCurrentSpeechText(message);
 
       if (mockMode) {
         clearTimeout(timer);
@@ -201,5 +205,5 @@ export function useKlleonSdk(avatarId: string) {
     }
   }, [mockMode]);
 
-  return { isReady, mockMode, isSpeaking, sdkStatus, echo, echoAndWait, stopSpeech };
+  return { isReady, mockMode, isSpeaking, sdkStatus, echo, echoAndWait, stopSpeech, currentSpeechText };
 }
