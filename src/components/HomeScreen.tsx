@@ -37,23 +37,48 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
   const [startIdx, setStartIdx] = useState(0);
   const hasAnimated = useRef(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
-  const [displayedText, setDisplayedText] = useState('');
   const fullText = speechText || DEFAULT_SPEECH;
+  // Split into lines by sentence endings or newlines
+  const lines = fullText.split(/[.!?\n]+/).map(s => s.trim()).filter(Boolean);
+  const [lineIdx, setLineIdx] = useState(0);
+  const [displayedLine, setDisplayedLine] = useState('');
+  const [fading, setFading] = useState(false);
 
-  // Typewriter effect: reveal one character at a time
+  // Typewriter per line, then auto-advance to next line
   useEffect(() => {
-    setDisplayedText('');
-    let idx = 0;
-    const interval = setInterval(() => {
-      idx++;
-      if (idx <= fullText.length) {
-        setDisplayedText(fullText.slice(0, idx));
+    setLineIdx(0);
+    setDisplayedLine('');
+    setFading(false);
+  }, [fullText]);
+
+  useEffect(() => {
+    if (lines.length === 0) return;
+    const currentLine = lines[lineIdx % lines.length];
+    let charIdx = 0;
+    setDisplayedLine('');
+    setFading(false);
+
+    // Type out current line
+    const typeInterval = setInterval(() => {
+      charIdx++;
+      if (charIdx <= currentLine.length) {
+        setDisplayedLine(currentLine.slice(0, charIdx));
       } else {
-        clearInterval(interval);
+        clearInterval(typeInterval);
+        // Wait, then fade out and advance
+        const waitTimer = setTimeout(() => {
+          setFading(true);
+          const fadeTimer = setTimeout(() => {
+            setLineIdx(prev => (prev + 1) % lines.length);
+          }, 300);
+          return () => clearTimeout(fadeTimer);
+        }, 2000);
+        return () => clearTimeout(waitTimer);
       }
     }, 50);
-    return () => clearInterval(interval);
-  }, [fullText]);
+
+    return () => clearInterval(typeInterval);
+  }, [lineIdx, lines.length]);
   const canPrev = startIdx > 0;
   const canNext = startIdx + VISIBLE_COUNT < gameList.length;
   const visibleGames = gameList.slice(startIdx, startIdx + VISIBLE_COUNT);
@@ -98,12 +123,14 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
                 small
               />
             </div>
-            {/* Speech bubble - live typewriter text */}
-            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl leading-relaxed mt-3 h-[60px] lg:h-[60px] shrink-0 overflow-y-auto whitespace-pre-line">
-              {displayedText}
-              {displayedText.length < fullText.length && (
-                <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
-              )}
+            {/* Speech bubble - auto-cycling lines */}
+            <div className="w-full z-20 bg-[#5A5A5A]/80 backdrop-blur-sm text-white text-xs lg:text-sm text-center px-4 py-3 rounded-xl mt-3 h-[60px] shrink-0 overflow-hidden flex items-center justify-center">
+              <span className={`transition-opacity duration-300 ${fading ? 'opacity-0' : 'opacity-100'}`}>
+                {displayedLine}
+                {displayedLine.length < (lines[lineIdx % lines.length] || '').length && (
+                  <span className="inline-block w-0.5 h-3.5 bg-white/70 ml-0.5 animate-pulse align-middle" />
+                )}
+              </span>
             </div>
             {/* Mic icon */}
             <button className="mt-3 flex items-center justify-center w-10 h-10 rounded-full bg-white/60 shadow-sm text-[#5A6B6A] hover:text-[#3A4B4A] transition-colors z-20">
