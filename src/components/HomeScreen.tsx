@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import type { GameId } from '../types';
 import { GAME_CONFIGS } from '../types';
 import { playClickSound } from '../utils/soundUtils';
@@ -41,11 +41,13 @@ export default function HomeScreen({ onSelectGame, mockMode, sdkStatus, speechTe
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   // Mic: voice input → echo to avatar
-  const handleVoiceResult = (text: string) => {
-    if (echo && text.trim()) {
-      echo(text.trim());
+  const echoRef = useRef(echo);
+  echoRef.current = echo;
+  const handleVoiceResult = useCallback((text: string) => {
+    if (echoRef.current && text.trim()) {
+      echoRef.current(text.trim());
     }
-  };
+  }, []);
   const voice = useVoiceInput({ onResult: handleVoiceResult, lang: 'ko-KR' });
   const fullText = speechText || DEFAULT_SPEECH;
   const [displayedText, setDisplayedText] = useState('');
