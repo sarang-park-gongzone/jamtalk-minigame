@@ -1,3 +1,15 @@
+# jamtalk-minigame
+
+A Korean word-chain (끝말잇기) mini-game built as a side project by a non-engineer PM, using Claude Code as the primary pair programmer to ship a full product end-to-end (PRD → frontend → backend → deploy).
+
+- **Live demo**: https://jamtalk-minigame-66vf.vercel.app
+- **Stack**: React + TypeScript + Vite (frontend) · Supabase Edge Functions (backend) · Tailwind CSS · deployed on Vercel
+- **Status**: 74 commits, live and playable. Actively iterating.
+
+This repo is also a working lab for a new kind of PM workflow — exploring how far a single non-engineer can take a real product when paired with an LLM coding agent.
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
